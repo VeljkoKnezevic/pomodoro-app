@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.selected {
+  @apply bg-blue text-dark-blue;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-blue h-screen w-screen;
+  }
+}
