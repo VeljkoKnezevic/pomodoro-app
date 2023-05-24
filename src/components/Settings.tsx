@@ -1,5 +1,7 @@
-import { Children, SetStateAction, useEffect, useRef, useState } from "react";
+import { SetStateAction, useState } from "react";
 import { SettingsState } from "../SettingsState";
+import Color from "./Color";
+import Font from "./Font";
 
 type SettingsProps = {
   settings: SettingsState;
@@ -40,7 +42,15 @@ const Settings = ({
     setOpenSettings(false);
   };
 
-  const handleColorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    setting: string,
+    values: {
+      first: string;
+      second: string;
+      third: string;
+    }
+  ) => {
     let arr: Element[] = [];
 
     if (e.currentTarget.parentElement) {
@@ -54,44 +64,13 @@ const Settings = ({
     const [first, second, third] = arr;
 
     if (e.currentTarget === first) {
-      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-red" }));
+      setSettingsToBeApplied((prev) => ({ ...prev, [setting]: values.first }));
     } else if (e.currentTarget === second) {
-      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-blue" }));
+      setSettingsToBeApplied((prev) => ({ ...prev, [setting]: values.second }));
     } else if (e.currentTarget === third) {
-      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-pink" }));
+      setSettingsToBeApplied((prev) => ({ ...prev, [setting]: values.third }));
     }
   };
-
-  const buttonRef = useRef<Element>();
-
-  // Add check bg image to the color pickers
-  useEffect(() => {
-    const { color } = settingsToBeApplied;
-    let arr: Element[] = [];
-
-    if (buttonRef.current) {
-      arr = [...buttonRef.current.children];
-    }
-
-    const [first, second, third] = arr;
-
-    if (color === "bg-red") {
-      first.setAttribute(
-        "style",
-        "background-image:url(/assets/icon-check.svg)"
-      );
-    } else if (color === "bg-blue") {
-      second.setAttribute(
-        "style",
-        "background-image:url(/assets/icon-check.svg)"
-      );
-    } else if (color === "bg-pink") {
-      third.setAttribute(
-        "style",
-        "background-image:url(/assets/icon-check.svg)"
-      );
-    }
-  }, [settingsToBeApplied]);
 
   return (
     <div className="absolute top-11 z-20 w-11/12 rounded-2xl bg-white">
@@ -130,51 +109,17 @@ const Settings = ({
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center border-b-[1px] border-[#E3E1E1] p-6">
-        <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">font</h3>
-        <div className="mt-[18px] flex gap-4">
-          <button type="button" className="h-10 w-10 rounded-full">
-            Aa
-          </button>
-          <button type="button" className="h-10 w-10 rounded-full">
-            Aa
-          </button>
-          <button type="button" className="h-10 w-10 rounded-full">
-            Aa
-          </button>
-        </div>
-      </section>
-      <section className="flex flex-col items-center p-6 pb-16">
-        <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">
-          Color
-        </h3>
-        <div ref={buttonRef} className="mt-[18px] flex gap-4">
-          <button
-            type="button"
-            className="h-10 w-10 rounded-full bg-red"
-            aria-label="red"
-            value="first"
-            onClick={handleColorClick}
-          ></button>
-          <button
-            type="button"
-            className="h-10 w-10 rounded-full bg-blue"
-            aria-label="blue"
-            value="second"
-            onClick={handleColorClick}
-          ></button>
-          <button
-            type="button"
-            className="h-10 w-10 rounded-full bg-pink"
-            aria-label="pink"
-            onClick={handleColorClick}
-            value="third"
-          ></button>
-        </div>
-      </section>
+      <Font
+        settingsToBeApplied={settingsToBeApplied}
+        handleClick={handleClick}
+      />
+      <Color
+        settingsToBeApplied={settingsToBeApplied}
+        handleClick={handleClick}
+      />
       <button
         type="button"
-        className={`${settingsToBeApplied.color} absolute bottom-[-26px] left-1/2 -translate-x-1/2 rounded-[26.5px] px-12 pb-5 pt-4 text-white`}
+        className={`${settingsToBeApplied.color} ${settingsToBeApplied.font} absolute bottom-[-26px] left-1/2 -translate-x-1/2 rounded-[26.5px] px-12 pb-5 pt-4 text-white`}
         onClick={handleApplyClick}
       >
         Apply

@@ -87,7 +87,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   };
 
   return (
-    <div className="relative timer-parent rounded-full w-[300px] flex flex-col items-center justify-center h-[300px] mt-12">
+    <div className="timer-parent relative mt-12 flex h-[300px] w-[300px] flex-col items-center justify-center rounded-full">
       <CountdownCircleTimer
         isPlaying={playing}
         duration={time}
@@ -103,7 +103,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
       <button
         onClick={handleClick}
         value={completed ? "restart" : "pause"}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-grey text-sm tracking-[13px] uppercase"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm uppercase tracking-[13px] text-grey"
         type="button"
       >
         {completed ? "restart" : "pause"}

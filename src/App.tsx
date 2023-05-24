@@ -4,7 +4,6 @@ import { SelectedEnum } from "./Enums";
 import CountdownTimer from "./components/CountdownTimer";
 import Header from "./components/Header";
 import Settings from "./components/Settings";
-import { SettingsState } from "./SettingsState";
 
 const App = () => {
   const [selected, setSelected] = useState<SelectedEnum>(SelectedEnum.FIRST);
@@ -16,10 +15,9 @@ const App = () => {
     font: "font-kumbh",
     color: "bg-red",
   });
-  const [apply, setApply] = useState(false);
 
   return (
-    <>
+    <div className={`${settings.font}`}>
       {openSettings && (
         <div className="absolute z-10 h-full w-full bg-[rgba(10,12,28,0.5)]" />
       )}
@@ -44,7 +42,7 @@ const App = () => {
           />
         )}
       </main>
-    </>
+    </div>
   );
 };
 
