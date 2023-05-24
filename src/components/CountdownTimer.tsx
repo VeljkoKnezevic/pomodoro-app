@@ -26,7 +26,7 @@ const children = ({ remainingTime = 1500 }) => {
 const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   const [counter, setCounter] = useState({
     completed: false,
-    time: 1500,
+    time: settings.pomodoro,
     playing: true,
     key: 0,
   });
@@ -49,21 +49,21 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
     if (selected === SelectedEnum.FIRST) {
       setCounter((prev) => ({
         ...prev,
-        time: 1500,
+        time: settings.pomodoro,
         key: prev.key + 1,
         playing: true,
       }));
     } else if (selected === SelectedEnum.SECOND) {
       setCounter((prev) => ({
         ...prev,
-        time: 300,
+        time: settings.short,
         key: prev.key + 1,
         playing: true,
       }));
     } else {
       setCounter((prev) => ({
         ...prev,
-        time: 900,
+        time: settings.long,
         key: prev.key + 1,
         playing: true,
       }));
@@ -73,7 +73,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   // Calls the function when the selected button is changed
   useEffect(() => {
     calcTime();
-  }, [selected]);
+  }, [selected, settings]);
 
   const colorConverter = (): string => {
     if (settings.color === "bg-red") {
