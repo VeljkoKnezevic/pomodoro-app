@@ -30,7 +30,7 @@ const App = () => {
         <CountdownTimer selected={selected} settings={settings} />
         <button
           type="button"
-          className="mt-20 h-7 w-7 bg-[url(/assets/icon-settings.svg)]"
+          className="mt-20 h-7 w-7 bg-[url(/assets/icon-settings.svg)] md:mt-28"
           aria-label="Settings"
           onClick={() => setOpenSettings(true)}
         ></button>

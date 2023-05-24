@@ -19,11 +19,11 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
     }
   };
   return (
-    <header className="flex flex-col items-center pt-8">
+    <header className="flex flex-col items-center pt-8 md:pt-20">
       <h1>
         <img src="/assets/logo.svg" alt="pomodoro logo" />
       </h1>
-      <section className="mx-6 mt-12 flex rounded-[31.5px] bg-gunmetal px-[6px] py-2 text-xs">
+      <section className="mx-6 mt-12 flex rounded-[31.5px] bg-gunmetal px-[6px] py-2 text-xs md:mt-14 md:gap-4 md:text-sm">
         <button
           type="button"
           name="first"
@@ -32,7 +32,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
             selected === SelectedEnum.FIRST
               ? `${settings.color} text-dark-blue opacity-100`
               : "text-grey opacity-40"
-          } rounded-3xl px-5  py-4`}
+          } rounded-3xl px-5  py-4 md:px-6 `}
         >
           pomodoro
         </button>
@@ -44,7 +44,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
             selected === SelectedEnum.SECOND
               ? `${settings.color} text-dark-blue opacity-100`
               : "text-grey opacity-40"
-          } rounded-3xl px-6 py-4`}
+          } rounded-3xl px-6 py-4 md:px-6`}
         >
           short break
         </button>
@@ -56,7 +56,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
             selected === SelectedEnum.THIRD
               ? `${settings.color} text-dark-blue opacity-100`
               : "text-grey opacity-40"
-          } rounded-3xl px-6  py-4`}
+          } rounded-3xl px-6  py-4 md:px-6 `}
         >
           long break
         </button>

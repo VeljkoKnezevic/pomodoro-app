@@ -93,7 +93,7 @@ const Time = ({ settingsToBeApplied, setSettingsToBeApplied }: TimeProps) => {
       <h3 className="text-center text-[11px]/[14px] uppercase tracking-[4.23px]">
         Time (minutes)
       </h3>
-      <div ref={timerRef}>
+      <div ref={timerRef} className="md:flex">
         <div id="pomodoro" className="mt-4 flex items-center justify-between">
           <p>pomodoro</p>
           <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">

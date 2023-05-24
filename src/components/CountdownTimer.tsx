@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { SelectedEnum } from "../Enums";
 import { SettingsState } from "../SettingsState";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 type CountdownTimerProps = {
   selected: SelectedEnum;
@@ -14,7 +15,7 @@ const children = ({ remainingTime = 1500 }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-[80px] text-grey">
+      <p className="text-[80px] text-grey md:text-[100px]">
         {`${minutes < 10 ? `0${minutes}` : minutes}:${
           seconds < 10 ? `0${seconds}` : seconds
         }`}
@@ -32,6 +33,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   });
 
   const { completed, time, playing, key } = counter;
+  const { width } = useWindowDimensions();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
@@ -87,14 +89,14 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   };
 
   return (
-    <div className="timer-parent relative mt-12 flex h-[300px] w-[300px] flex-col items-center justify-center rounded-full">
+    <div className="timer-parent relative mt-12 flex h-[300px] w-[300px] flex-col items-center justify-center rounded-full md:mt-[109px] md:h-[410px] md:w-[410px]">
       <CountdownCircleTimer
         isPlaying={playing}
         duration={time}
         key={key}
         colors={`#${colorConverter()}`}
         rotation="counterclockwise"
-        size={268}
+        size={width < 768 ? 268 : 366}
         onComplete={() => setCounter((prev) => ({ ...prev, completed: true }))}
         trailColor="#161932"
       >
@@ -103,7 +105,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
       <button
         onClick={handleClick}
         value={completed ? "restart" : "pause"}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm uppercase tracking-[13px] text-grey"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm uppercase tracking-[13px] text-grey md:bottom-24 md:text-base"
         type="button"
       >
         {completed ? "restart" : "pause"}
