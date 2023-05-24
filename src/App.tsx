@@ -16,11 +16,12 @@ const App = () => {
     font: "font-kumbh",
     color: "bg-red",
   });
+  const [apply, setApply] = useState(false);
 
   return (
     <>
       {openSettings && (
-        <div className="w-full h-full absolute z-10 bg-[rgba(10,12,28,0.5)]" />
+        <div className="absolute z-10 h-full w-full bg-[rgba(10,12,28,0.5)]" />
       )}
       <Header
         selected={selected}
@@ -31,7 +32,7 @@ const App = () => {
         <CountdownTimer selected={selected} settings={settings} />
         <button
           type="button"
-          className="w-7 h-7 bg-[url(/assets/icon-settings.svg)] mt-20"
+          className="mt-20 h-7 w-7 bg-[url(/assets/icon-settings.svg)]"
           aria-label="Settings"
           onClick={() => setOpenSettings(true)}
         ></button>

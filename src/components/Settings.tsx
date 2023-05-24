@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { Children, SetStateAction, useEffect, useRef, useState } from "react";
 import { SettingsState } from "../SettingsState";
 
 type SettingsProps = {
@@ -12,12 +12,12 @@ const Buttons = () => {
     <div className="flex flex-col">
       <button
         type="button"
-        className="bg-[/assets/icon-arrow-up.svg] bg-center bg-no-repeat w-3 h-2 "
+        className="h-2 w-3 bg-[/assets/icon-arrow-up.svg] bg-center bg-no-repeat "
         aria-label="increase"
       ></button>
       <button
         type="button"
-        className="bg-[/assets/icon-arrow-down.svg] w-3 h-2 "
+        className="h-2 w-3 bg-[/assets/icon-arrow-down.svg] "
         aria-label="decrease"
       ></button>
     </div>
@@ -29,78 +29,153 @@ const Settings = ({
   setSettings,
   setOpenSettings,
 }: SettingsProps) => {
+  const [settingsToBeApplied, setSettingsToBeApplied] = useState<SettingsState>(
+    {
+      ...settings,
+    }
+  );
+
+  const handleApplyClick = () => {
+    setSettings(settingsToBeApplied);
+    setOpenSettings(false);
+  };
+
+  const handleColorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let arr: Element[] = [];
+
+    if (e.currentTarget.parentElement) {
+      arr = [...e.currentTarget.parentElement.children];
+    }
+
+    arr.forEach((elem) => {
+      elem.removeAttribute("style");
+    });
+
+    const [first, second, third] = arr;
+
+    if (e.currentTarget === first) {
+      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-red" }));
+    } else if (e.currentTarget === second) {
+      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-blue" }));
+    } else if (e.currentTarget === third) {
+      setSettingsToBeApplied((prev) => ({ ...prev, color: "bg-pink" }));
+    }
+  };
+
+  const buttonRef = useRef<Element>();
+
+  // Add check bg image to the color pickers
+  useEffect(() => {
+    const { color } = settingsToBeApplied;
+    let arr: Element[] = [];
+
+    if (buttonRef.current) {
+      arr = [...buttonRef.current.children];
+    }
+
+    const [first, second, third] = arr;
+
+    if (color === "bg-red") {
+      first.setAttribute(
+        "style",
+        "background-image:url(/assets/icon-check.svg)"
+      );
+    } else if (color === "bg-blue") {
+      second.setAttribute(
+        "style",
+        "background-image:url(/assets/icon-check.svg)"
+      );
+    } else if (color === "bg-pink") {
+      third.setAttribute(
+        "style",
+        "background-image:url(/assets/icon-check.svg)"
+      );
+    }
+  }, [settingsToBeApplied]);
+
   return (
-    <div className="bg-white rounded-2xl absolute z-20 w-11/12 top-11">
-      <div className="flex justify-between items-center p-6">
-        <h2>Settings</h2>
+    <div className="absolute top-11 z-20 w-11/12 rounded-2xl bg-white">
+      <div className="flex items-center justify-between p-6">
+        <h2 className="text-xl text-dark-blue ">Settings</h2>
         <button
           onClick={() => setOpenSettings(false)}
           type="button"
-          className="bg-[url(/assets/icon-close.svg)] bg-no-repeat bg-center w-4 h-4"
+          className="h-4 w-4 bg-[url(/assets/icon-close.svg)] bg-center bg-no-repeat"
           aria-label="Close settings"
         ></button>
       </div>
-      <section className="p-6 border-y-[1px] border-[#E3E1E1]">
-        <h3>Time (minutes)</h3>
-        <div className="flex items-center justify-between">
+      <section className="border-y-[1px] border-[#E3E1E1] p-6">
+        <h3 className="text-center text-[11px]/[14px] uppercase tracking-[4.23px]">
+          Time (minutes)
+        </h3>
+        <div className="mt-4 flex items-center justify-between">
           <p>pomodoro</p>
-          <div className="flex items-center justify-between bg-cream text-start pt-4 pr-4 pb-3 pl-4">
+          <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settings.pomodoro / 60}</p>
             <Buttons />
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="mt-2 flex items-center justify-between">
           <p>short break</p>
-          <div className="flex items-center justify-between bg-cream text-start pt-4 pr-4 pb-3 pl-4">
+          <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settings.short / 60}</p>
             <Buttons />
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="mt-2 flex items-center justify-between">
           <p>long break</p>
-          <div className="flex items-center justify-between bg-cream text-start pt-4 pr-4 pb-3 pl-4">
+          <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settings.long / 60}</p>
             <Buttons />
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center p-6 border-b-[1px] border-[#E3E1E1]">
-        <h2>font</h2>
-        <div className="flex gap-4 mt-[18px]">
-          <button type="button" className="w-10 h-10 rounded-full">
+      <section className="flex flex-col items-center border-b-[1px] border-[#E3E1E1] p-6">
+        <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">font</h3>
+        <div className="mt-[18px] flex gap-4">
+          <button type="button" className="h-10 w-10 rounded-full">
             Aa
           </button>
-          <button type="button" className="w-10 h-10 rounded-full">
+          <button type="button" className="h-10 w-10 rounded-full">
             Aa
           </button>
-          <button type="button" className="w-10 h-10 rounded-full">
+          <button type="button" className="h-10 w-10 rounded-full">
             Aa
           </button>
         </div>
       </section>
       <section className="flex flex-col items-center p-6 pb-16">
-        <h2>Color</h2>
-        <div className="flex gap-4 mt-[18px]">
+        <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">
+          Color
+        </h3>
+        <div ref={buttonRef} className="mt-[18px] flex gap-4">
           <button
             type="button"
-            className="w-10 h-10 rounded-full bg-red"
+            className="h-10 w-10 rounded-full bg-red"
             aria-label="red"
+            value="first"
+            onClick={handleColorClick}
           ></button>
           <button
             type="button"
-            className="w-10 h-10 rounded-full bg-blue"
+            className="h-10 w-10 rounded-full bg-blue"
             aria-label="blue"
+            value="second"
+            onClick={handleColorClick}
           ></button>
           <button
             type="button"
-            className="w-10 h-10 rounded-full bg-pink"
+            className="h-10 w-10 rounded-full bg-pink"
             aria-label="pink"
+            onClick={handleColorClick}
+            value="third"
           ></button>
         </div>
       </section>
       <button
         type="button"
-        className={`${settings.color} pt-4 px-12 pb-5 rounded-[26.5px] text-white absolute bottom-[-26px] left-1/2 -translate-x-1/2`}
+        className={`${settingsToBeApplied.color} absolute bottom-[-26px] left-1/2 -translate-x-1/2 rounded-[26.5px] px-12 pb-5 pt-4 text-white`}
+        onClick={handleApplyClick}
       >
         Apply
       </button>
