@@ -89,27 +89,39 @@ const Time = ({ settingsToBeApplied, setSettingsToBeApplied }: TimeProps) => {
   };
 
   return (
-    <section className="border-y-[1px] border-[#E3E1E1] p-6">
-      <h3 className="text-center text-[11px]/[14px] uppercase tracking-[4.23px]">
+    <section className="border-t-[1px] border-[#E3E1E1] p-6 md:px-10 md:py-6">
+      <h3 className="text-center text-[11px]/[14px] uppercase tracking-[4.23px] md:text-start md:text-sm">
         Time (minutes)
       </h3>
-      <div ref={timerRef} className="md:flex">
-        <div id="pomodoro" className="mt-4 flex items-center justify-between">
-          <p>pomodoro</p>
+      <div
+        ref={timerRef}
+        className="mt-4 flex flex-col gap-2 md:mt-6 md:flex-row md:gap-5"
+      >
+        <div
+          id="pomodoro"
+          className="flex items-center justify-between md:flex-col md:items-start md:gap-2"
+        >
+          <p className="text-xs text-dark-blue opacity-40">pomodoro</p>
           <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settingsToBeApplied.pomodoro / 60}</p>
             <Buttons handleButtons={handleButtons} />
           </div>
         </div>
-        <div id="short" className="mt-2 flex items-center justify-between">
-          <p>short break</p>
+        <div
+          id="short"
+          className=" flex items-center justify-between md:flex-col md:items-start"
+        >
+          <p className="text-xs text-dark-blue opacity-40">short break</p>
           <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settingsToBeApplied.short / 60}</p>
             <Buttons handleButtons={handleButtons} />
           </div>
         </div>
-        <div id="long" className="mt-2 flex items-center justify-between">
-          <p>long break</p>
+        <div
+          id="long"
+          className=" flex items-center justify-between md:flex-col md:items-start"
+        >
+          <p className="text-xs text-dark-blue opacity-40">long break</p>
           <div className="flex w-36 items-center justify-between rounded-xl bg-cream pb-3 pl-4 pr-4 pt-4 text-start">
             <p>{settingsToBeApplied.long / 60}</p>
             <Buttons handleButtons={handleButtons} />

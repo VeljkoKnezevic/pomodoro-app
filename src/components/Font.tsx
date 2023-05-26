@@ -43,27 +43,29 @@ const Font = ({ settingsToBeApplied, handleClick }: FontProps) => {
   }, [settingsToBeApplied]);
 
   return (
-    <section className="flex flex-col items-center border-b-[1px] border-[#E3E1E1] p-6">
-      <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">font</h3>
-      <div ref={buttonRef} className="mt-[18px] flex gap-4">
+    <section className="flex flex-col items-center border-y-[1px] border-[#E3E1E1] p-6 md:mx-10 md:flex-row md:justify-between md:px-0">
+      <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px] md:text-xs">
+        font
+      </h3>
+      <div ref={buttonRef} className="mt-[18px] flex gap-4 md:mt-0">
         <button
           onClick={(e) => handleClick(e, "font", values)}
           type="button"
-          className="h-10 w-10 rounded-full"
+          className="h-10 w-10 rounded-full font-kumbh"
         >
           Aa
         </button>
         <button
           onClick={(e) => handleClick(e, "font", values)}
           type="button"
-          className="h-10 w-10 rounded-full"
+          className="h-10 w-10 rounded-full font-roboto"
         >
           Aa
         </button>
         <button
           onClick={(e) => handleClick(e, "font", values)}
           type="button"
-          className="h-10 w-10 rounded-full"
+          className="h-10 w-10 rounded-full font-spacemono"
         >
           Aa
         </button>

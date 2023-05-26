@@ -52,9 +52,9 @@ const Color = ({ settingsToBeApplied, handleClick }: ColorProps) => {
   };
 
   return (
-    <section className="flex flex-col items-center p-6 pb-16">
+    <section className="flex flex-col items-center p-6 pb-16 md:mx-10 md:flex-row md:justify-between md:px-0">
       <h3 className="text-[11px]/[14px] uppercase tracking-[4.23px]">Color</h3>
-      <div ref={buttonRef} className="mt-[18px] flex gap-4">
+      <div ref={buttonRef} className="mt-[18px] flex gap-4 md:mt-0">
         <button
           type="button"
           className="h-10 w-10 rounded-full bg-red"
