@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { SettingsState } from "../SettingsState";
+import { ColorEnum } from "../Enums";
 
 type ColorProps = {
   settingsToBeApplied: SettingsState;
@@ -27,17 +28,17 @@ const Color = ({ settingsToBeApplied, handleClick }: ColorProps) => {
 
     const [first, second, third] = arr;
 
-    if (color === "bg-red") {
+    if (color === ColorEnum.RED) {
       first.setAttribute(
         "style",
         "background-image:url(/assets/icon-check.svg)"
       );
-    } else if (color === "bg-blue") {
+    } else if (color === ColorEnum.BLUE) {
       second.setAttribute(
         "style",
         "background-image:url(/assets/icon-check.svg)"
       );
-    } else if (color === "bg-pink") {
+    } else if (color === ColorEnum.PINK) {
       third.setAttribute(
         "style",
         "background-image:url(/assets/icon-check.svg)"
@@ -46,9 +47,9 @@ const Color = ({ settingsToBeApplied, handleClick }: ColorProps) => {
   }, [settingsToBeApplied]);
 
   const values = {
-    first: "bg-red",
-    second: "bg-blue",
-    third: "bg-pink",
+    first: ColorEnum.RED,
+    second: ColorEnum.BLUE,
+    third: ColorEnum.PINK,
   };
 
   return (

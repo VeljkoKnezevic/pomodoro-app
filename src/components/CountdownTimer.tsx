@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { SelectedEnum } from "../Enums";
+import { ColorEnum, SelectedEnum } from "../Enums";
 import { SettingsState } from "../SettingsState";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
@@ -78,10 +78,10 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
   }, [selected, settings]);
 
   const colorConverter = (): string => {
-    if (settings.color === "bg-red") {
+    if (settings.color === ColorEnum.RED) {
       return "f87070";
     }
-    if (settings.color === "bg-blue") {
+    if (settings.color === ColorEnum.BLUE) {
       return "70f3f8";
     }
 

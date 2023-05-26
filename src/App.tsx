@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./style.css";
-import { SelectedEnum } from "./Enums";
+import { SelectedEnum, ColorEnum, FontEnum } from "./Enums";
 import CountdownTimer from "./components/CountdownTimer";
 import Header from "./components/Header";
 import Settings from "./components/Settings";
@@ -12,8 +12,8 @@ const App = () => {
     pomodoro: 1500,
     short: 300,
     long: 900,
-    font: "font-kumbh",
-    color: "bg-red",
+    font: FontEnum.KUMBH,
+    color: ColorEnum.RED,
   });
 
   return (

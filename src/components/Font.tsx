@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { SettingsState } from "../SettingsState";
+import { FontEnum } from "../Enums";
 
 type FontProps = {
   settingsToBeApplied: SettingsState;
@@ -16,9 +17,9 @@ type FontProps = {
 
 const Font = ({ settingsToBeApplied, handleClick }: FontProps) => {
   const values = {
-    first: "font-kumbh",
-    second: "font-roboto",
-    third: "font-spacemono",
+    first: FontEnum.KUMBH,
+    second: FontEnum.ROBOTO,
+    third: FontEnum.SPACEMONO,
   };
 
   const buttonRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -33,11 +34,11 @@ const Font = ({ settingsToBeApplied, handleClick }: FontProps) => {
 
     const [first, second, third] = arr;
 
-    if (font === "font-kumbh") {
+    if (font === FontEnum.KUMBH) {
       first.setAttribute("style", "background: #161932; color:#ffffff;");
-    } else if (font === "font-roboto") {
+    } else if (font === FontEnum.ROBOTO) {
       second.setAttribute("style", "background: #161932; color:#ffffff;");
-    } else if (font === "font-spacemono") {
+    } else if (font === FontEnum.SPACEMONO) {
       third.setAttribute("style", "background: #161932; color:#ffffff;");
     }
   }, [settingsToBeApplied]);

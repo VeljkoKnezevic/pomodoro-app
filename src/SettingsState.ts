@@ -1,7 +1,9 @@
+import { ColorEnum, FontEnum } from "./Enums";
+
 export type SettingsState = {
   pomodoro: number;
   short: number;
   long: number;
-  font: string;
-  color: string;
+  font: FontEnum;
+  color: ColorEnum;
 };
