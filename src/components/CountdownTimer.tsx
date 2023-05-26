@@ -79,17 +79,17 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
 
   const colorConverter = (): string => {
     if (settings.color === "bg-red") {
-      return "F87070";
+      return "f87070";
     }
     if (settings.color === "bg-blue") {
-      return "70F3F8";
+      return "70f3f8";
     }
 
-    return "D881F8";
+    return "d881f8";
   };
 
   return (
-    <div className="timer-parent relative mt-12 flex h-[300px] w-[300px] flex-col items-center justify-center rounded-full md:mt-[109px] md:h-[410px] md:w-[410px]">
+    <div className="timer-parent relative mt-12 flex h-[300px] w-[300px] flex-col items-center justify-center rounded-full md:mt-[109px] md:h-[410px] md:w-[410px] lg:mt-11">
       <CountdownCircleTimer
         isPlaying={playing}
         duration={time}
@@ -105,7 +105,7 @@ const CountdownTimer = ({ selected, settings }: CountdownTimerProps) => {
       <button
         onClick={handleClick}
         value={completed ? "restart" : "pause"}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm uppercase tracking-[13px] text-grey md:bottom-24 md:text-base"
+        className={`absolute bottom-20 left-1/2 -translate-x-1/2 text-sm uppercase tracking-[13px] text-white hover:text-[#${colorConverter()}] md:bottom-24 md:text-base `}
         type="button"
       >
         {completed ? "restart" : "pause"}

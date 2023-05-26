@@ -19,7 +19,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
     }
   };
   return (
-    <header className="flex flex-col items-center pt-8 md:pt-20">
+    <header className="flex flex-col items-center pt-8 md:pt-20 lg:pt-12">
       <h1>
         <img src="/assets/logo.svg" alt="pomodoro logo" />
       </h1>
@@ -31,7 +31,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
           className={`${
             selected === SelectedEnum.FIRST
               ? `${settings.color} text-dark-blue opacity-100`
-              : "text-grey opacity-40"
+              : "text-grey opacity-40 hover:opacity-100"
           } rounded-3xl px-5  py-4 md:px-6 `}
         >
           pomodoro
@@ -43,7 +43,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
           className={`${
             selected === SelectedEnum.SECOND
               ? `${settings.color} text-dark-blue opacity-100`
-              : "text-grey opacity-40"
+              : "text-grey opacity-40 hover:opacity-100"
           } rounded-3xl px-6 py-4 md:px-6`}
         >
           short break
@@ -55,7 +55,7 @@ const Header = ({ selected, setSelected, settings }: HeaderProps) => {
           className={`${
             selected === SelectedEnum.THIRD
               ? `${settings.color} text-dark-blue opacity-100`
-              : "text-grey opacity-40"
+              : "text-grey opacity-40 hover:opacity-100"
           } rounded-3xl px-6  py-4 md:px-6 `}
         >
           long break

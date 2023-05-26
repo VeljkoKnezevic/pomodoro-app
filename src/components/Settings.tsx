@@ -58,7 +58,7 @@ const Settings = ({
 
   return (
     <section
-      className={`${settingsToBeApplied.font} absolute top-11 z-20 w-11/12 rounded-2xl bg-white md:top-[267px] md:w-auto `}
+      className={`${settingsToBeApplied.font} absolute top-11 z-20 w-11/12 rounded-2xl bg-white md:top-[267px] md:w-auto lg:top-[155px]`}
     >
       <div className="flex items-center justify-between p-6 md:px-10 md:py-8">
         <h2 className="text-xl text-dark-blue md:text-3xl">Settings</h2>
